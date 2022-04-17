@@ -16,13 +16,12 @@ const SocialLogin = () => {
 
   const navigate = useNavigate();
   let errorElement;
+  
   if (error || error1) {
     errorElement = (
-      <div>
-        <p className="text-danger">
-          Error: {error?.message} {error1?.message}
-        </p>
-      </div>
+      <p className="text-danger">
+        Error: {error?.message} {error1?.message}
+      </p>
     );
   }
 
@@ -51,7 +50,7 @@ const SocialLogin = () => {
           <span className="px-2">Facebook Sign In</span>
         </button>
         <button
-          onClick={() =>signInWithGithub()}
+          onClick={() => signInWithGithub()}
           className="btn btn-primary w-50 d-block mx-auto"
         >
           <img style={{ width: '30px' }} src={github} alt="" />
