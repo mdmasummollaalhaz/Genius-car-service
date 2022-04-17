@@ -1,6 +1,15 @@
 .service{
-    border: 1px solid darkorange;
+    border: 1px solid lightcoral;
     border-radius: 10px;
     padding-bottom: 10px;
     text-align: center;
+    overflow: hidden;
+}
+.book{
+    background-color: lightcoral;
+    padding: 10px 10px;
+    margin: 20px 0px;
+    border: 0px;
+    border-radius: 3px;
+
 }
