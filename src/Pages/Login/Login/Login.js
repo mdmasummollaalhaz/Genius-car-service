@@ -12,7 +12,8 @@ const Login = () => {
 
   const location = useLocation();
 
-  let from = location.state?.from?.pathname || "/";
+  let from = location.state?.form?.pathname || "/";
+  // console.log(location);
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
