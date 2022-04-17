@@ -4,8 +4,11 @@ import './Register.css';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { useState } from 'react';
 
 const Register = () => {
+  const [agree, setAgree] = useState(false);
+
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
@@ -24,9 +27,14 @@ const Register = () => {
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+    // const agree = event.target.terms.checked;
+
+    if (agree) {
+      createUserWithEmailAndPassword(email, password);
+    }
 
     // console.log(name, email, password);
-    createUserWithEmailAndPassword(email, password);
+    // createUserWithEmailAndPassword(email, password);
   };
   return (
     <div className="container w-50 mx-auto mt-5 register-form">
@@ -47,9 +55,22 @@ const Register = () => {
           placeholder="password"
           required
         />
-        <input type="checkbox" name="terms" id="terms" />
-        <label htmlFor="terms">Accept Ginus Terms and condition</label>
-        <input className='w-50 mx-auto btn btn primary mt-3' type="submit" value="Register" />
+        <input
+          onClick={() => setAgree(!agree)}
+          type="checkbox"
+          name="terms"
+          id="terms"
+        />
+        {/* <label className={ agree ? 'ps-2 text-primary' : 'ps-2 text-danger'} htmlFor="terms">Accept Genius Terms and condition</label> */}
+        <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">
+          Accept Genius Terms and condition
+        </label>
+        <input
+          disabled={!agree}
+          className="w-50 mx-auto btn btn primary mt-3"
+          type="submit"
+          value="Register"
+        />
       </form>
       <p>
         Already have an account?{' '}
