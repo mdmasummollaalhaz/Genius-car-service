@@ -16,12 +16,22 @@ const Login = () => {
   let from = location.state?.form?.pathname || "/";
   // console.log(location);
 
+  let errorElement;
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
 
   if (user) {
     // navigate('/home');
     navigate(from, {replace: true});
+  }
+  if (error) {
+    errorElement = (
+      <div>
+        <p className="text-danger">
+          Error: {error?.message}
+        </p>
+      </div>
+    );
   }
   const handleSubmit = event => {
     event.preventDefault();
@@ -63,6 +73,7 @@ const Login = () => {
           Submit
         </Button>
       </Form>
+      {errorElement}
       <p>
         New to Genius car?{' '}
         <Link
